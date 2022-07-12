@@ -77,47 +77,49 @@ function App() {
 
   return (
     <div className="App">
-      <div>
+      <div className="form">
         <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
         <button onClick={addItem}>Add</button>
       </div>
-      <DragDropContext onDragEnd={handleDragEnd}>
-        {_.map(state, (data, key) => {
-          return (
-            <div key={key} className={"column"}>
-              <h3>{data.title}</h3>
-              <Droppable droppableId={key}>
-                {(provided) => {
-                  return (
-                    <div ref={provided.innerRef}
-                      {...provided.droppableProps}
-                      className={"droppable-col"}>
-                      {data.items.map((el, index) => {
-                        return (
-                          <Draggable key={el.id} index={index} draggableId={el.id}>
-                            {(provided) => {
-                              return (
-                                <div
-                                  className={"item"}
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}>
-                                  {el.name}
-                                </div>
-                              )
-                            }}
-                          </Draggable>
-                        )
-                      })}
-                      {provided.placeholder}
-                    </div>
-                  )
-                }}
-              </Droppable>
-            </div>
-          )
-        })}
-      </DragDropContext>
+      <main className="container">
+        <DragDropContext onDragEnd={handleDragEnd}>
+          {_.map(state, (data, key) => {
+            return (
+              <div key={key} className={"column"}>
+                <h3>{data.title}</h3>
+                <Droppable droppableId={key}>
+                  {(provided) => {
+                    return (
+                      <div ref={provided.innerRef}
+                        {...provided.droppableProps}
+                        className={"droppable-col"}>
+                        {data.items.map((el, index) => {
+                          return (
+                            <Draggable key={el.id} index={index} draggableId={el.id}>
+                              {(provided) => {
+                                return (
+                                  <div
+                                    className={"item"}
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}>
+                                    {el.name}
+                                  </div>
+                                )
+                              }}
+                            </Draggable>
+                          )
+                        })}
+                        {provided.placeholder}
+                      </div>
+                    )
+                  }}
+                </Droppable>
+              </div>
+            )
+          })}
+        </DragDropContext>
+      </main>
     </div>
   );
 }

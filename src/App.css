@@ -1,7 +1,14 @@
 .App {
-  display: flex;
+  /* display: flex;
   width: 100%;
+  justify-content: space-around; */
+}
+
+.container {
+  display: flex;
+  /* width: 100%; */
   justify-content: space-around;
+  padding: 10px;
 }
 
 .App .column {
@@ -25,4 +32,10 @@
   border: 1px solid white;
   padding: 5px;
   border-radius: 7px;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
 }
