@@ -34,6 +34,23 @@ function App() {
     if (!destination) return;
     if (destination.index === source.index && destination.droppableId === source.droppableId) return;
 
+    // Creating a copy of item before removing it from state
+    const itemCopy = { ...state[source.droppableId].items[source.index] }
+
+    setState(prev => {
+      prev = { ...prev }
+
+      // remove from previous items array
+      prev[source.droppableId].items.splice(source.index, 1)
+
+      // Adding new items to the destination array
+      // items.splice(1, 2, 3) 
+      // 1. Destination index. We want to add this into the destination
+      // 2. since we want to ADD, we set to 0
+      // 3. 3rd param is the new item we want to add
+      prev[destination.droppableId].items.splice(destination.index, 0, itemCopy)
+      return prev
+    })
 
   }
 
