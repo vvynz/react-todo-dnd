@@ -55,11 +55,31 @@ function App() {
 
   }
 
+  const addItem = () => {
+    setState(prev => {
+      return {
+        ...prev,
+        todo: {
+          title: "title",
+          items: [
+            {
+              id: v4(),
+              name: text,
+            },
+            ...prev.todo.items]
+        }
+      }
+    })
+
+    // Once new item is added to state, clear the input field
+    setText("")
+  }
+
   return (
     <div className="App">
       <div>
         <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
-        <button>Add</button>
+        <button onClick={addItem}>Add</button>
       </div>
       <DragDropContext onDragEnd={handleDragEnd}>
         {_.map(state, (data, key) => {
