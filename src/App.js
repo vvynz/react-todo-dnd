@@ -15,6 +15,7 @@ const item2 = {
 }
 
 function App() {
+  const [text, setText] = useState("");
   const [state, setState] = useState({
     "todo": {
       title: "Todo",
@@ -56,6 +57,10 @@ function App() {
 
   return (
     <div className="App">
+      <div>
+        <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
+        <button>Add</button>
+      </div>
       <DragDropContext onDragEnd={handleDragEnd}>
         {_.map(state, (data, key) => {
           return (
