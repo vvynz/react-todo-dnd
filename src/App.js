@@ -48,7 +48,9 @@ function App() {
                           <Draggable key={el.id} index={index} draggableId={el.id}>
                             {(provided) => {
                               return (
-                                <div ref={provided.innerRef}
+                                <div
+                                  className={"item"}
+                                  ref={provided.innerRef}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}>
                                   {el.name}
@@ -58,6 +60,7 @@ function App() {
                           </Draggable>
                         )
                       })}
+                      {provided.placeholder}
                     </div>
                   )
                 }}
